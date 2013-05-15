@@ -48,6 +48,3 @@ require( './routes' );
 
 // Configure Sockets
 require( './sockets');
-
-// Configure Database
-require( './db' );
