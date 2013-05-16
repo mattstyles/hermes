@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module( 'hermesApp', [ 'ui.bootstrap', 'btford.socket-io' ])
+angular.module( 'hermesApp', [ 'ui.bootstrap', 'ui.utils','btford.socket-io' ])
     .config( [ '$routeProvider', '$locationProvider', function ( $routeProvider, $locationProvider ) {
         $routeProvider
         .when( '/', {
