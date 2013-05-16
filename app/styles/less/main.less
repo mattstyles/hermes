@@ -6,3 +6,120 @@
 /* ==================================================== */
 /* Project Styles                                       */
 /* ==================================================== */
+@primaryColor: #B8003C;
+@secondaryColor: #FF95B3;
+
+@navbarHeight: 60px;
+@navbarBackgroundHighlight: @secondaryColor;
+@navbarBackground: @primaryColor;
+
+@footerHeight: 200px;
+@footerGradientHeight: 20px;
+
+body {
+    padding-top: @navbarHeight;
+    padding-bottom: @footerHeight;
+}
+
+@media (max-width: 979px) {
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        position: fixed;
+    }
+
+    .navbar-fixed-top .navbar-inner {
+        padding: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-fixed-top .navbar-inner {
+        padding: 0;
+    }
+
+    body {
+        padding-left: 0px;
+        padding-right: 0px;
+        .row {
+            margin-left: 10%;
+            width: 80%;
+        }
+    }
+
+}
+
+header {
+    height: @navbarHeight;
+
+    .navbar-inner {
+        #gradient > .vertical( darken(@navbarBackgroundHighlight, 20%), darken(@navbarBackground, 10%) );
+    }
+
+    h1 {
+        font-size: 24px;
+        color: white;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+    }
+}
+
+.messages {
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    li {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #e4e4e4;
+        min-height: 40px;
+        #gradient > .vertical(#fbfbf8, #f6f6f4);
+
+        &:first-child {
+
+        }
+
+        .left {
+            float: left;
+            width: 20%;
+        }
+
+        .right {
+            float:left;
+            width:70%;
+        }
+    }
+}
+
+
+footer {
+    @navbarBackground: #242424;
+    @navbarBackgroundHighlight: #555;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    .footer-top {
+        min-height: @footerGradientHeight;
+        #gradient > .vertical( @navbarBackgroundHighlight, @navbarBackground );
+        border-top: 1px solid black;
+    }
+
+    .footer-main {
+        height: @footerHeight - @footerGradientHeight;
+        background: @navbarBackground;
+
+        .input-area {
+            position: relative;
+
+            textarea {
+                resize: none;
+
+                &:focus {
+                    border-color: rgba(144,4,49,0.33);
+                    @shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten(@primaryColor, 20%);
+                    .box-shadow(@shadow);
+                }
+            }
+        }
+    }
+}
