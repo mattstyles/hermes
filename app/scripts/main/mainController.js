@@ -10,10 +10,11 @@ angular.module( 'hermesApp' )
         $scope.message = '';
 
         /**
-         * Keypress Event - Enter
-         * Prevents the default line break behaviour and pushes the message
+         * Send Message
+         * on button press and on enter
+         * Prevents the default line break behaviour and pushes the message to the list of messages
          */
-        $scope.keypressEnter = function( $event ) {
+        $scope.sendMessage = function( $event ) {
             // Push a new message object on to the messages stack
             $scope.messages.push( { user: '', msg: $scope.message } );
 

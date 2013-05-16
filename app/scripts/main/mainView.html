@@ -23,8 +23,8 @@
         <div class="container">
             <div class="row">
                 <div class="offset3 span6 input-area">
-                    <textarea ui-keypress="{'enter':'keypressEnter($event)'}" ng-model="message" class="span6" rows="4"></textarea>
-                    <div class="btn pull-right"><i class="icon-pencil"></i> Send</div>
+                    <textarea ui-keypress="{'enter':'sendMessage($event)'}" ng-model="message" class="span6" rows="4"></textarea>
+                    <div ng-click="sendMessage($event)" class="btn pull-right"><i class="icon-pencil"></i> Send</div>
                 </div>
             </div>
         </div>
