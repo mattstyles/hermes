@@ -39,7 +39,7 @@ angular.module( 'hermesApp' )
 
                 // Scroll the body to the top to account for the change in position when the keyboard is dismissed on iOS
                 // @todo add modernizr here
-                if ( refresh ) {
+                if ( refresh && Modernizr.touch ) {
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                 }
             });
