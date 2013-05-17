@@ -61,7 +61,7 @@ angular.module( 'hermesApp' )
                 // Scroll the body to the top to account for the change in position when the keyboard is dismissed on iOS
                 // @todo add modernizr here
                 if ( refresh && Modernizr.touch ) {
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $( 'html, body' ).animate( { scrollTop: 0 }, 'slow' );
                 }
             });
 
@@ -78,8 +78,8 @@ angular.module( 'hermesApp' )
         /**
          * Listening for a message pushed to the stack by another user
          */
-         socket.on( 'send:message', function( data ) {
+        socket.on( 'send:message', function( data ) {
             $scope.messages.push( { user: '', msg: data.msg } );
-         } );
+        } );
 
     }]);
