@@ -41,6 +41,11 @@ angular.module( 'hermesApp' )
             // Push a new message object on to the messages stack
             $scope.messages.push( { user: '', msg: $scope.message } );
 
+            // Emit an event to inform other users of this message
+            socket.emit( 'send:message', {
+                msg: $scope.message
+            } );
+
             // Reset the scope message to communicate back to the textarea
             $scope.message = '';
 
@@ -63,5 +68,18 @@ angular.module( 'hermesApp' )
             // Prevent the default line-break behaviour
             $event.preventDefault();
         };
+
+        /*********************
+         *
+         * Socket Listeners
+         *
+         *********************/
+
+        /**
+         * Listening for a message pushed to the stack by another user
+         */
+         socket.on( 'send:message', function( data ) {
+            $scope.messages.push( { user: '', msg: data.msg } );
+         } );
 
     }]);
