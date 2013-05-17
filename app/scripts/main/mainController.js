@@ -9,6 +9,13 @@ angular.module( 'hermesApp' )
         // A single message
         $scope.message = '';
 
+        // The iScroll object
+        var iScroll = new window.iScroll( 'wrapper', {
+            momentum: true,
+            wheelAction: 'scroll',
+            hScrollbar: true
+        } );
+
         /**
          * Send Message
          * on button press and on enter
@@ -21,8 +28,15 @@ angular.module( 'hermesApp' )
             // Reset the scope message to communicate back to the textarea
             $scope.message = '';
 
-            // Ensure that window is scrolled to the bottom so that any new messages can be seen
-            $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+            // Refresh iscroll once the DOM has changed and make sure the new message is visible
+            _.defer( function() {
+                iScroll.refresh();
+
+                // Only attempt to scroll if there are elements lower on the page
+                if ( iScroll.maxScrollY < 0 ) {
+                    iScroll.scrollTo(0, iScroll.maxScrollY, 0);
+                }
+            });
 
             // Prevent the default line-break behaviour
             $event.preventDefault();
