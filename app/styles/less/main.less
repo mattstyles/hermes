@@ -117,6 +117,8 @@ footer {
 }
 
 @media (max-width: 979px) {
+    @footerHeight: 120px;
+
     .navbar-fixed-top, .navbar-fixed-bottom {
         position: fixed;
     }
@@ -126,11 +128,32 @@ footer {
     }
 
     footer .footer-main {
-        height: 100px;
+        height: @footerHeight - @footerGradientHeight;
+    }
+
+    .messages {
+        top: @navbarHeight;
+        bottom: @footerHeight;
     }
 }
 
 @media (max-width: 767px) {
+    @navbarHeight: 40px;
+    @footerHeight: 120px;
+
+    header {
+        height: @navbarHeight;
+
+        .navbar-inner {
+            min-height: @navbarHeight;
+        }
+
+        h1 {
+            font-size: 18px;
+            line-height: 20px;
+        }
+    }
+
     .navbar-fixed-top .navbar-inner {
         padding: 0;
     }
@@ -138,9 +161,15 @@ footer {
     body {
         padding-left: 0px;
         padding-right: 0px;
+
         .row {
             margin-left: 10%;
             width: 80%;
+        }
+
+        .messages {
+            top: @navbarHeight;
+            bottom: @footerHeight;
         }
     }
 }

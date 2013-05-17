@@ -11,6 +11,7 @@ angular.module( 'hermesApp' )
 
         // The iScroll object
         var iScroll = new window.iScroll( 'wrapper', {
+            bounce: false,
             momentum: true,
             wheelAction: 'scroll',
             hScrollbar: true
