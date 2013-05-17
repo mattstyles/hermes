@@ -17,6 +17,21 @@ angular.module( 'hermesApp' )
         } );
 
         /**
+         * Add an event handler to the window to resize the textarea when the window changes size
+         */
+        $(window).resize( function() {
+            $('#input').attr( 'rows', $scope.initInput());
+        });
+
+        /**
+         * Initialises the input box
+         * Sets the number of rows to 4 on desktop and 2 on touch devices
+         */
+        $scope.initInput = function() {
+            return $('body').width() < 979 ? 2 : 4;
+        };
+
+        /**
          * Send Message
          * on button press and on enter
          * Prevents the default line break behaviour and pushes the message to the list of messages
