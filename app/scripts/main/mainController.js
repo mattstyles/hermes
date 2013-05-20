@@ -57,6 +57,15 @@ angular.module( 'hermesApp' )
             // Reset the scope message to communicate back to the textarea
             $scope.message = '';
 
+            // Refresh iScroll
+            refreshiScroll( refresh );
+
+            // Prevent the default line-break behaviour
+            $event.preventDefault();
+        };
+
+        // Refresh iScroll function
+        var refreshiScroll = function( refresh ) {
             // Refresh iscroll once the DOM has changed and make sure the new message is visible
             _.defer( function() {
                 iScroll.refresh();
@@ -72,9 +81,6 @@ angular.module( 'hermesApp' )
                     $( 'html, body' ).animate( { scrollTop: 0 }, 'slow' );
                 }
             });
-
-            // Prevent the default line-break behaviour
-            $event.preventDefault();
         };
 
         /*********************
@@ -88,6 +94,9 @@ angular.module( 'hermesApp' )
          */
         socket.on( 'send:message', function( data ) {
             $scope.messages.push( { user: data.user, msg: data.msg } );
+
+            // Refresh iScroll
+            refreshiScroll( true );
         });
 
         /**
@@ -110,6 +119,9 @@ angular.module( 'hermesApp' )
 
             // Push the user on to the user stack
             $scope.users.push( data.name );
+
+            // Refresh iScroll
+            refreshiScroll( true );
         });
 
         /**
@@ -133,6 +145,9 @@ angular.module( 'hermesApp' )
                     break;
                 }
             }
+
+            // Refresh iScroll
+            refreshiScroll( true );
         });
 
     }]);
