@@ -40,4 +40,4 @@ _Coming Soon_
 
 ---
 
-Banter: [@veryfizzyjelly](https://twitter.com/veryfizzyjelly)
+Banter: [@veryfizzyjelly](https://twitter.com/veryfizzyjelly) #hermes
