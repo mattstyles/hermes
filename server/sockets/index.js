@@ -12,4 +12,10 @@ io.sockets.on( 'connection', function( socket ) {
      */
     require( './message' )( socket );
 
+    /**
+     * User socket
+     * Handles users joining, leaving and posting messages
+     */
+    require( './user' )( socket );
+
 } );
