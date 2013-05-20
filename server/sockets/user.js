@@ -60,7 +60,7 @@ module.exports = function( socket ) {
     var name = userNames.getGuestName();
 
     // Initialise a new user with a name
-    socket.emit( 'user:init', {
+    socket.emit( 'user:connected', {
         name : name,
         users: userNames.get()
     });

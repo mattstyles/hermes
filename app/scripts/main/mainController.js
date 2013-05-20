@@ -9,6 +9,13 @@ angular.module( 'hermesApp' )
         // A single message
         $scope.message = '';
 
+        // The client user name
+        $scope.name = '';
+
+        // The users’ stack
+        $scope.users = [];
+
+
         // The iScroll object
         var iScroll = new window.iScroll( 'wrapper', {
             bounce: false,
@@ -80,6 +87,51 @@ angular.module( 'hermesApp' )
          */
         socket.on( 'send:message', function( data ) {
             $scope.messages.push( { user: '', msg: data.msg } );
-        } );
+        });
+
+        /**
+         * Listens for this client user being connected
+         */
+        socket.on( 'user:connected', function( data ) {
+            $scope.name = data.name;
+            $scope.users = data.users;
+        });
+
+        /**
+         * Listens for other clients being connected
+         */
+        socket.on( 'user:join', function( data ) {
+            // Push a message onto the message stack to inform of a new user joining
+            $scope.messages.push( {
+                user: '',
+                msg: data.name + ' has joined'
+            });
+
+            // Push the user on to the user stack
+            $scope.users.push( data.name );
+        });
+
+        /**
+         * Listens for other clients disconnecting
+         */
+        socket.on( 'user:disconnect', function( data ) {
+            // Push a message onto the message stack to inform of a user disconnecting
+            $scope.messages.push( {
+                user: '',
+                msg: data.name + ' has left'
+            });
+
+            // Remove the user from the users stack
+            var i,
+                user;
+
+            for ( i = 0; i < $scope.users.length; i += 1 ) {
+                user = $scope.users[ i ];
+                if ( user === data.name ) {
+                    $scope.users.splice( i, 1 );
+                    break;
+                }
+            }
+        });
 
     }]);
