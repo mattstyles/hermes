@@ -10,6 +10,7 @@ module.exports = function( socket ) {
          * Emit the message to other users
          */
         socket.broadcast.emit( 'send:message', {
+            user: data.user,
             msg: data.msg
         } );
     } );

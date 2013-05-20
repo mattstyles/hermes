@@ -46,10 +46,11 @@ angular.module( 'hermesApp' )
          */
         $scope.sendMessage = function( $event, refresh ) {
             // Push a new message object on to the messages stack
-            $scope.messages.push( { user: '', msg: $scope.message } );
+            $scope.messages.push( { user: $scope.name, msg: $scope.message } );
 
             // Emit an event to inform other users of this message
             socket.emit( 'send:message', {
+                user: $scope.name,
                 msg: $scope.message
             } );
 
@@ -86,7 +87,7 @@ angular.module( 'hermesApp' )
          * Listening for a message pushed to the stack by another user
          */
         socket.on( 'send:message', function( data ) {
-            $scope.messages.push( { user: '', msg: data.msg } );
+            $scope.messages.push( { user: data.user, msg: data.msg } );
         });
 
         /**
